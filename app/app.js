@@ -3,8 +3,8 @@ const Application = function() {
   this.tuner = new Tuner(this.a4)
   this.notes = new Notes('.notes', this.tuner)
   this.meter = new Meter('.meter')
-  this.frequencyBars = new FrequencyBars('.frequency-bars')
   this.update({ name: 'A', frequency: this.a4, octave: 4, value: 69, cents: 0 })
+ 
 }
 
 Application.prototype.initA4 = function () {
@@ -30,7 +30,7 @@ Application.prototype.start = function() {
     self.tuner.init()
     self.frequencyData = new Uint8Array(self.tuner.analyser.frequencyBinCount)
   })
-
+  
   this.$a4.addEventListener('click', function () {
     swal.fire({
       input: 'number',
@@ -45,18 +45,11 @@ Application.prototype.start = function() {
       self.notes.createNotes()
       self.update({ name: 'A', frequency: self.a4, octave: 4, value: 69, cents: 0 })
       localStorage.setItem('a4', a4)
+      
     })
   })
 
-  this.updateFrequencyBars()
-}
-
-Application.prototype.updateFrequencyBars = function() {
-  if (this.tuner.analyser) {
-    this.tuner.analyser.getByteFrequencyData(this.frequencyData)
-    this.frequencyBars.update(this.frequencyData)
-  }
-  requestAnimationFrame(this.updateFrequencyBars.bind(this))
+ 
 }
 
 Application.prototype.update = function(note) {

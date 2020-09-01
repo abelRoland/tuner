@@ -33,7 +33,7 @@ body {
   padding-left: 10px;
 }
 
-.note.active {
+.active {
   color: #e74c3c;
 }
 
