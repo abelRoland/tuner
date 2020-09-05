@@ -30,23 +30,8 @@ Application.prototype.start = function() {
     self.frequencyData = new Uint8Array(self.tuner.analyser.frequencyBinCount)
   }
 
-  function logStart(message) {
-    return new Promise ((resolve, reject) => {
-        
-            console.log(message);
-            
-            const error = false;
-            if (!error) {
-                resolve();
-            } else {
-                reject('Error');
-            }
-        
-    }); 
-}
-
-
-logStart('Tuner is on').then(initialize)
+  
+swal.fire('Tuner is on').then(initialize)
 
   this.$a4.addEventListener('click', function () {
     swal.fire({
