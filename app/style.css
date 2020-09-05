@@ -14,12 +14,6 @@ body {
   -moz-user-select: none;
 }
 
-#container {
-  background: rgba(255, 255, 255, .4);
-  height: 100%;
-  border-radius: 20px;
-}
-
 .notes {
   margin: auto;
   width: 400px;
