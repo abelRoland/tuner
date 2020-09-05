@@ -3,7 +3,6 @@ const Application = function() {
   this.tuner = new Tuner(this.a4)
   this.notes = new Notes('.notes', this.tuner)
   this.meter = new Meter('.meter')
-  this.frequencyBars = new FrequencyBars('.frequency-bars')
   this.update({ name: 'A', frequency: this.a4, octave: 4, value: 69, cents: 0 })
 }
 
@@ -26,10 +25,28 @@ Application.prototype.start = function() {
     }
   }
 
-  swal.fire('Welcome online tuner!').then(function() {
+  function initialize() {
     self.tuner.init()
     self.frequencyData = new Uint8Array(self.tuner.analyser.frequencyBinCount)
-  })
+  }
+
+  function logStart(message) {
+    return new Promise ((resolve, reject) => {
+        
+            console.log(message);
+            
+            const error = false;
+            if (!error) {
+                resolve();
+            } else {
+                reject('Error');
+            }
+        
+    }); 
+}
+
+
+logStart('Tuner is on').then(initialize)
 
   this.$a4.addEventListener('click', function () {
     swal.fire({
@@ -48,15 +65,6 @@ Application.prototype.start = function() {
     })
   })
 
-  this.updateFrequencyBars()
-}
-
-Application.prototype.updateFrequencyBars = function() {
-  if (this.tuner.analyser) {
-    this.tuner.analyser.getByteFrequencyData(this.frequencyData)
-    this.frequencyBars.update(this.frequencyData)
-  }
-  requestAnimationFrame(this.updateFrequencyBars.bind(this))
 }
 
 Application.prototype.update = function(note) {

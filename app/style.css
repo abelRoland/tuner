@@ -14,6 +14,12 @@ body {
   -moz-user-select: none;
 }
 
+.container {
+  background: rgba(255, 255, 255, .4);
+  height: 100%;
+  border-radius: 20px;
+}
+
 .notes {
   margin: auto;
   width: 400px;
@@ -60,17 +66,18 @@ body {
 
 .note span {
   position: absolute;
-  right: 0.25em;
-  font-size: 40%;
+  
+  font-size: 35%;
   font-weight: normal;
 }
 
 .note-sharp {
-  top: 0.3em;
+  top: 0.1em;
 }
 
 .note-octave {
   bottom: 0.3em;
+  right: 0.25em;
 }
 
 .frequency {
@@ -130,10 +137,6 @@ body {
   border-top-width: 20px;
 }
 
-.frequency-bars {
-  position: fixed;
-  bottom: 0;
-}
 
 @media (max-width: 768px) {
   .meter {
